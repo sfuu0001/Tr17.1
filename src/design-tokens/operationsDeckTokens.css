@@ -1,0 +1,54 @@
+/**
+ * OPERATIONS_DECK V4.8 MESH DISPATCH - CSS Design Tokens Variables
+ */
+:root {
+  /* Colors - Base */
+  --deck-color-white: #ffffff;
+  --deck-color-black: #000000;
+
+  /* Colors - Neutrals */
+  --deck-neutral-50: #fbfbf9;
+  --deck-neutral-100: #fafaf8;
+  --deck-neutral-200: #f5f5f2;
+  --deck-neutral-300: #f0f0eb;
+  --deck-neutral-400: #e5e5e0;
+  --deck-neutral-500: #d3d1cb;
+  --deck-neutral-600: #a0a09a;
+  --deck-neutral-700: #767670;
+  --deck-neutral-800: #333330;
+  --deck-neutral-900: #1a1c1b;
+  --deck-neutral-950: #111110;
+
+  /* Colors - Status */
+  --deck-status-success: #15803d;
+  --deck-status-success-bg: #f0fdf4;
+  --deck-status-success-border: rgba(21, 128, 61, 0.3);
+
+  --deck-status-info: #2563eb;
+  --deck-status-info-bg: #eff6ff;
+  --deck-status-info-border: rgba(37, 99, 235, 0.3);
+
+  --deck-status-warning: #d97706;
+  --deck-status-warning-bg: #fffbeb;
+  --deck-status-warning-border: rgba(217, 119, 6, 0.3);
+
+  --deck-status-danger: #dc2626;
+  --deck-status-danger-bg: #fef2f2;
+  --deck-status-danger-border: rgba(220, 38, 38, 0.4);
+
+  /* Typography */
+  --deck-font-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --deck-font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --deck-font-mono: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  /* Border Radii */
+  --deck-radius-sharp: 1px;
+  --deck-radius-badge: 2px;
+  --deck-radius-control: 3px;
+  --deck-radius-modal: 4px;
+
+  /* Shadows */
+  --deck-shadow-micro: 0 1px 1px rgba(0, 0, 0, 0.02);
+  --deck-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --deck-shadow-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}

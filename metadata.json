@@ -1,0 +1,12 @@
+{
+  "name": "Remix  Remix 17urban-radar-food-truck",
+  "description": "Imported from GitHub: sfuu0001/urban-radar-food-truck",
+  "requestFramePermissions": [
+    "microphone",
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

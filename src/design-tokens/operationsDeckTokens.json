@@ -1,0 +1,127 @@
+{
+  "$name": "Operations Deck Industrial Design System",
+  "$version": "4.8.0",
+  "$description": "High-contrast white industrial telemetry & operations design system tokens for desktop and mobile folding views",
+  "color": {
+    "base": {
+      "white": { "$value": "#ffffff", "$type": "color" },
+      "black": { "$value": "#000000", "$type": "color" },
+      "transparent": { "$value": "transparent", "$type": "color" }
+    },
+    "neutral": {
+      "50": { "$value": "#fbfbf9", "$type": "color", "$description": "Canvas tint / micro panel bg" },
+      "100": { "$value": "#fafaf8", "$type": "color", "$description": "Secondary container surface" },
+      "200": { "$value": "#f5f5f2", "$type": "color", "$description": "Hover surface & subtle divider" },
+      "300": { "$value": "#f0f0eb", "$type": "color", "$description": "Divider hair-line" },
+      "400": { "$value": "#e5e5e0", "$type": "color", "$description": "Primary card & container border" },
+      "500": { "$value": "#d3d1cb", "$type": "color", "$description": "Medium emphasis border / inactive icon" },
+      "600": { "$value": "#a0a09a", "$type": "color", "$description": "Muted caption / empty placeholder text" },
+      "700": { "$value": "#767670", "$type": "color", "$description": "Secondary label & telemetry metadata" },
+      "800": { "$value": "#333330", "$type": "color", "$description": "High readability body text" },
+      "900": { "$value": "#1a1c1b", "$type": "color", "$description": "Active accent / dark container hover" },
+      "950": { "$value": "#111110", "$type": "color", "$description": "Primary headline / dark foreground" }
+    },
+    "status": {
+      "success": {
+        "bg": { "$value": "#f0fdf4", "$type": "color" },
+        "border": { "$value": "rgba(21, 128, 61, 0.3)", "$type": "color" },
+        "solid": { "$value": "#15803d", "$type": "color" },
+        "text": { "$value": "#15803d", "$type": "color" }
+      },
+      "info": {
+        "bg": { "$value": "#eff6ff", "$type": "color" },
+        "border": { "$value": "rgba(37, 99, 235, 0.3)", "$type": "color" },
+        "solid": { "$value": "#2563eb", "$type": "color" },
+        "text": { "$value": "#2563eb", "$type": "color" }
+      },
+      "warning": {
+        "bg": { "$value": "#fffbeb", "$type": "color" },
+        "border": { "$value": "rgba(217, 119, 6, 0.3)", "$type": "color" },
+        "solid": { "$value": "#d97706", "$type": "color" },
+        "text": { "$value": "#d97706", "$type": "color" }
+      },
+      "danger": {
+        "bg": { "$value": "#fef2f2", "$type": "color" },
+        "border": { "$value": "rgba(220, 38, 38, 0.4)", "$type": "color" },
+        "solid": { "$value": "#dc2626", "$type": "color" },
+        "text": { "$value": "#dc2626", "$type": "color" }
+      },
+      "idle": {
+        "bg": { "$value": "#fafaf8", "$type": "color" },
+        "border": { "$value": "#d3d1cb", "$type": "color" },
+        "solid": { "$value": "#767670", "$type": "color" },
+        "text": { "$value": "#767670", "$type": "color" }
+      }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "heading": { "$value": "\"Space Grotesk\", system-ui, -apple-system, sans-serif", "$type": "fontFamily" },
+      "body": { "$value": "\"Space Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"PingFang SC\", \"Microsoft YaHei\", sans-serif", "$type": "fontFamily" },
+      "mono": { "$value": "\"Space Grotesk\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"PingFang SC\", \"Microsoft YaHei\", sans-serif", "$type": "fontFamily" }
+    },
+    "fontSize": {
+      "micro": { "$value": "10px", "$type": "dimension" },
+      "xs": { "$value": "11px", "$type": "dimension" },
+      "sm": { "$value": "12px", "$type": "dimension" },
+      "base": { "$value": "14px", "$type": "dimension" },
+      "md": { "$value": "15px", "$type": "dimension" },
+      "lg": { "$value": "18px", "$type": "dimension" },
+      "xl": { "$value": "20px", "$type": "dimension" },
+      "2xl": { "$value": "24px", "$type": "dimension" },
+      "3xl": { "$value": "30px", "$type": "dimension" }
+    },
+    "lineHeight": {
+      "none": { "$value": "1", "$type": "number" },
+      "tight": { "$value": "1.2", "$type": "number" },
+      "snug": { "$value": "1.35", "$type": "number" },
+      "normal": { "$value": "1.5", "$type": "number" },
+      "relaxed": { "$value": "1.65", "$type": "number" }
+    },
+    "fontWeight": {
+      "normal": { "$value": "400", "$type": "fontWeight" },
+      "medium": { "$value": "500", "$type": "fontWeight" },
+      "semibold": { "$value": "600", "$type": "fontWeight" },
+      "bold": { "$value": "700", "$type": "fontWeight" }
+    }
+  },
+  "spacing": {
+    "0": { "$value": "0px", "$type": "dimension" },
+    "0.5": { "$value": "2px", "$type": "dimension" },
+    "1": { "$value": "4px", "$type": "dimension" },
+    "1.5": { "$value": "6px", "$type": "dimension" },
+    "2": { "$value": "8px", "$type": "dimension" },
+    "2.5": { "$value": "10px", "$type": "dimension" },
+    "3": { "$value": "12px", "$type": "dimension" },
+    "3.5": { "$value": "14px", "$type": "dimension" },
+    "4": { "$value": "16px", "$type": "dimension" },
+    "5": { "$value": "20px", "$type": "dimension" },
+    "6": { "$value": "24px", "$type": "dimension" },
+    "8": { "$value": "32px", "$type": "dimension" },
+    "10": { "$value": "40px", "$type": "dimension" },
+    "12": { "$value": "48px", "$type": "dimension" }
+  },
+  "radii": {
+    "none": { "$value": "0px", "$type": "dimension" },
+    "sharp": { "$value": "1px", "$type": "dimension" },
+    "badge": { "$value": "2px", "$type": "dimension" },
+    "control": { "$value": "3px", "$type": "dimension" },
+    "modal": { "$value": "4px", "$type": "dimension" },
+    "full": { "$value": "9999px", "$type": "dimension" }
+  },
+  "elevation": {
+    "micro": { "$value": "0 1px 1px rgba(0, 0, 0, 0.02)", "$type": "shadow" },
+    "card": { "$value": "0 1px 2px rgba(0, 0, 0, 0.03)", "$type": "shadow" },
+    "dropdown": { "$value": "0 4px 12px rgba(0, 0, 0, 0.08)", "$type": "shadow" },
+    "modal": { "$value": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05)", "$type": "shadow" }
+  },
+  "components": {
+    "card": {
+      "border": { "$value": "1px solid #e5e5e0", "$type": "border" },
+      "radius": { "$value": "3px", "$type": "dimension" },
+      "background": { "$value": "#ffffff", "$type": "color" },
+      "foldedHeight": { "$value": "38px", "$type": "dimension" },
+      "hoverBorder": { "$value": "#1a1c1b", "$type": "color" }
+    }
+  }
+}

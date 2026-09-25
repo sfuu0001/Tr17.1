@@ -1,0 +1,73 @@
+{
+  "$comment": "CloudBase 数据库安全规则清单（C2）。本文件是规则的【可断言来源】——见 infra/tcb-rules/README.md 的语法差异警告。控制台修改后必须同步本文件与 scripts/verify-transport.ts 的断言。",
+  "version": 1,
+  "env": "TCB_ENV_ID_PLACEHOLDER",
+  "updatedAt": "2026-09-11",
+  "collections": {
+    "obsidian_table_sessions": {
+      "purpose": "桌台会话（参与者、席位状态、待决请求）",
+      "rules": {
+        "read": "auth != null",
+        "write": false
+      },
+      "invariants": [
+        "客户端不可写：成员增减、权限变更、桌主转移一律经云函数 tableLink",
+        "若开放客户端写，任何人都能把自己写进 participants，授权协议形同虚设"
+      ]
+    },
+    "obsidian_table_link_requests": {
+      "purpose": "联动授权请求（授权收敛的服务端裁决对象）",
+      "rules": {
+        "read": "auth != null && (doc.targets.includes(auth.uid) || doc.requesterId == auth.uid || doc.targets.includes('*'))",
+        "create": "auth != null && doc.requesterId == auth.uid",
+        "update": false,
+        "delete": false
+      },
+      "invariants": [
+        "update 必须为 false —— 否则客户端可绕过 CAS 直接把自己标成 granted",
+        "targets 由云函数写入；create 规则仅作纵深防御",
+        "read 必须收窄到 targets 含自己或自己是发起人，否则授权请求会泄漏给全店"
+      ]
+    },
+    "obsidian_reactive_events": {
+      "purpose": "跨设备事件总线（传输信封，追加型）",
+      "rules": {
+        "read": "auth != null && (doc.targets.includes(auth.uid) || doc.targets.includes('*'))",
+        "create": "auth != null && doc.emittedBy == auth.uid",
+        "update": false,
+        "delete": false
+      },
+      "invariants": [
+        "create 校验 emittedBy == auth.uid，防止伪造他人身份发布事件",
+        "update 必须为 false，防止把已投递的 denied 篡改为 granted",
+        "过期回收由定时触发器批量删除，不开放客户端 delete"
+      ]
+    },
+    "obsidian_table_session_probes": {
+      "purpose": "行为探针（商家侧观测数据）",
+      "rules": {
+        "read": false,
+        "write": false
+      },
+      "invariants": [
+        "客户端读写一律拒绝：开放读会暴露全店顾客行为路径",
+        "仅经云函数 tableLink 供商家端读取"
+      ]
+    }
+  },
+  "cloudFunctions": {
+    "tableLink": {
+      "source": "src/utils/cloudbase.ts → CLOUD_FUNCTION_TEMPLATES.TABLE_LINK",
+      "actions": ["join", "settle", "fetch", "heartbeat", "release"],
+      "critical": "settle 必须以 where({requestId, status:'pending'}).update(...) 实现条件更新，并以 updated === 0 判定被抢先"
+    },
+    "cleanupReactiveEvents": {
+      "schedule": "每 10 分钟",
+      "source": "infra/tcb-rules/README.md → 过期清理小节"
+    }
+  },
+  "customLogin": {
+    "method": "anonymous",
+    "note": "匿名登录下 auth.uid 是否在规则表达式中可用，必须在目标环境实测确认；不可用时改为 read:false + 全部经云函数"
+  }
+}

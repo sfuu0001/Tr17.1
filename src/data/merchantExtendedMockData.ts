@@ -1,0 +1,347 @@
+import { 
+  PrinterStation, 
+  ReceiptTemplateConfig, 
+  MemberRecord, 
+  MemberRechargeRecord, 
+  StaffMember, 
+  QueueTicket 
+} from '../types';
+
+export const INITIAL_PRINTER_STATIONS: PrinterStation[] = [
+  {
+    id: 'prt-grill',
+    name: '后厨炭烤档口飞单机',
+    stationType: 'grill',
+    connectionType: 'network',
+    deviceIp: '192.168.1.101',
+    port: 9100,
+    modelBrand: '佳博 Gprinter 80以太网口重型防油防水机',
+    paperWidth: '80mm',
+    copies: 1,
+    autoPrintOnNewOrder: true,
+    categoriesHandled: ['skewers', 'western'],
+    status: 'online',
+    pingLatencyMs: 6,
+    lastPrintedAt: '2分钟前'
+  },
+  {
+    id: 'prt-bar',
+    name: '吧台冷萃饮品打印机',
+    stationType: 'bar',
+    connectionType: 'wifi',
+    deviceIp: '192.168.1.102',
+    port: 9100,
+    modelBrand: '爱普生 Epson TM-m30II 双频 WiFi 票据机',
+    paperWidth: '58mm',
+    copies: 1,
+    autoPrintOnNewOrder: true,
+    categoriesHandled: ['drinks', 'desserts'],
+    status: 'online',
+    pingLatencyMs: 14,
+    lastPrintedAt: '8分钟前'
+  },
+  {
+    id: 'prt-fry',
+    name: '小吃炸炉档口打印机',
+    stationType: 'fry',
+    connectionType: 'usb',
+    deviceIp: '192.168.1.103',
+    usbVendorId: '0x0416',
+    usbProductId: '0x5011',
+    modelBrand: '芯烨 Xprinter XP-N160I USB 档口小票机',
+    paperWidth: '58mm',
+    copies: 1,
+    autoPrintOnNewOrder: true,
+    categoriesHandled: ['snacks', 'mains'],
+    status: 'online',
+    pingLatencyMs: 4,
+    lastPrintedAt: '15分钟前'
+  },
+  {
+    id: 'prt-cashier',
+    name: '前台收银/外卖总单打印机',
+    stationType: 'cashier',
+    connectionType: 'bluetooth',
+    deviceIp: '192.168.1.100',
+    macAddress: 'DC:0D:30:8F:A2:11',
+    modelBrand: '佳博 GP-58MBIII 车载蓝牙便携票据机',
+    paperWidth: '80mm',
+    copies: 2,
+    autoPrintOnNewOrder: true,
+    categoriesHandled: ['all'],
+    status: 'online',
+    batteryLevel: 92,
+    pingLatencyMs: 18,
+    lastPrintedAt: '刚刚'
+  }
+];
+
+export const INITIAL_RECEIPT_TEMPLATE: ReceiptTemplateConfig = {
+  headerTitle: '黑石移动餐车 · OBSIDIAN TRUCK',
+  subHeader: '匠心炭烤 · 创意西餐 · 全球风味',
+  showOrderNo: true,
+  showTableCode: true,
+  showDishDetails: true,
+  showOptionNotes: true,
+  showPrice: true,
+  showQrCode: true,
+  qrCodeType: 'pickup',
+  wifiName: 'Obsidian_Guest_5G',
+  wifiPassword: 'eat-good-food',
+  footerNotes: '感谢您的品尝！现烤现制稍需等候，如需调味请告知主厨。',
+  customerCopyText: '【顾客联 · 请妥善保管小票】',
+  kitchenCopyText: '【后厨出品联 · 制作联】',
+  activePreviewChannel: 'auto',
+  // 堂食 (Dine-in)
+  dineInTitle: '堂食出单联',
+  showDineInTableBig: true,
+  showDineInGuests: true,
+  dineInZoneNotice: '餐车外摆休闲区',
+  // 自提 (Self-Pickup)
+  pickupTitle: '顾客自提联',
+  showPickupCodeBig: true,
+  showPickupShelf: true,
+  pickupLockerCode: '02号保温取餐格',
+  // 外卖 (Delivery)
+  deliveryTitle: '专送外卖联 (骑手/封口)',
+  showDeliveryAddressBig: true,
+  showDeliveryRiderNotes: true,
+  showFoodSafetySeal: true
+};
+
+export const INITIAL_MEMBERS: MemberRecord[] = [
+  {
+    id: 'mem-001',
+    memberNo: 'M8801',
+    name: '林逸凡',
+    phone: '138****8821',
+    tier: 'diamond',
+    tierName: '黑钻会员',
+    discountRate: 0.85,
+    balance: 860.0,
+    points: 3420,
+    totalSpent: 4890.0,
+    orderCount: 28,
+    lastVisit: '今天 12:15',
+    registeredAt: '2025-11-10',
+    tags: ['重度烧烤爱好者', '常点大汗羊排', '高客单'],
+    couponCount: 3
+  },
+  {
+    id: 'mem-002',
+    memberNo: 'M8802',
+    name: '苏明月',
+    phone: '139****1902',
+    tier: 'gold',
+    tierName: '黄金会员',
+    discountRate: 0.90,
+    balance: 320.0,
+    points: 1580,
+    totalSpent: 2150.0,
+    orderCount: 14,
+    lastVisit: '昨天 19:40',
+    registeredAt: '2026-01-15',
+    tags: ['甜品特调偏好', '晚市常客'],
+    couponCount: 2
+  },
+  {
+    id: 'mem-003',
+    memberNo: 'M8803',
+    name: '周俊杰',
+    phone: '150****6732',
+    tier: 'silver',
+    tierName: '白银会员',
+    discountRate: 0.95,
+    balance: 150.0,
+    points: 620,
+    totalSpent: 860.0,
+    orderCount: 6,
+    lastVisit: '3天前',
+    registeredAt: '2026-02-01',
+    tags: ['外卖主力', '重辣口味'],
+    couponCount: 1
+  },
+  {
+    id: 'mem-004',
+    memberNo: 'M8804',
+    name: '陈美玲',
+    phone: '186****4519',
+    tier: 'regular',
+    tierName: '大众会员',
+    discountRate: 1.0,
+    balance: 0.0,
+    points: 120,
+    totalSpent: 168.0,
+    orderCount: 2,
+    lastVisit: '5天前',
+    registeredAt: '2026-02-18',
+    tags: ['新晋顾客'],
+    couponCount: 1
+  }
+];
+
+export const INITIAL_MEMBER_RECHARGES: MemberRechargeRecord[] = [
+  {
+    id: 'rcg-101',
+    recordNo: 'RC2026082701',
+    memberId: 'mem-001',
+    memberName: '林逸凡',
+    phone: '138****8821',
+    rechargeAmount: 500.0,
+    bonusAmount: 100.0,
+    totalReceived: 600.0,
+    paymentMethod: 'wechat',
+    operator: '店长 (张伟)',
+    timestamp: '2026-08-27 11:30',
+    note: '老客回馈充500赠100'
+  },
+  {
+    id: 'rcg-102',
+    recordNo: 'RC2026082602',
+    memberId: 'mem-002',
+    memberName: '苏明月',
+    phone: '139****1902',
+    rechargeAmount: 200.0,
+    bonusAmount: 30.0,
+    totalReceived: 230.0,
+    paymentMethod: 'alipay',
+    operator: '收银员 (李晓芳)',
+    timestamp: '2026-08-26 18:20',
+    note: '充值赠菜品券'
+  }
+];
+
+export const INITIAL_STAFF_MEMBERS: StaffMember[] = [
+  {
+    id: 'staff-01',
+    staffNo: 'ST-001',
+    name: '张伟 (店长)',
+    phone: '13800138000',
+    role: 'manager',
+    roleTitle: '店长 / 运营合伙人',
+    permissions: ['all', 'manage_dishes', 'view_profits', 'approve_refund', 'staff_management', 'export_data'],
+    status: 'active',
+    shiftStart: '09:00',
+    workHoursToday: 6.5,
+    monthlySales: 86400,
+    monthlyCommission: 4320,
+    joinedDate: '2024-06-01'
+  },
+  {
+    id: 'staff-02',
+    staffNo: 'ST-002',
+    name: '李晓芳',
+    phone: '13800138002',
+    role: 'cashier',
+    roleTitle: '前台领班 / 收银员',
+    permissions: ['pos_order', 'table_manage', 'print_receipt', 'member_crm'],
+    status: 'active',
+    shiftStart: '10:30',
+    workHoursToday: 5.0,
+    monthlySales: 45200,
+    monthlyCommission: 1800,
+    joinedDate: '2025-01-10'
+  },
+  {
+    id: 'staff-03',
+    staffNo: 'ST-003',
+    name: '王铁柱 (烤师)',
+    phone: '13800138003',
+    role: 'grill_chef',
+    roleTitle: '炭烤主厨 / 档口负责人',
+    permissions: ['kds_view', 'sop_view', 'loss_record', 'prep_materials'],
+    status: 'active',
+    shiftStart: '11:00',
+    workHoursToday: 4.5,
+    monthlySales: 0,
+    monthlyCommission: 2400,
+    joinedDate: '2024-08-15'
+  },
+  {
+    id: 'staff-04',
+    staffNo: 'ST-004',
+    name: '陈清风 (调饮师)',
+    phone: '13800138004',
+    role: 'barista',
+    roleTitle: '特调水吧师',
+    permissions: ['kds_view', 'sop_view', 'prep_materials'],
+    status: 'active',
+    shiftStart: '11:30',
+    workHoursToday: 4.0,
+    monthlySales: 0,
+    monthlyCommission: 1200,
+    joinedDate: '2025-03-01'
+  },
+  {
+    id: 'staff-05',
+    staffNo: 'ST-005',
+    name: '刘飞 (专送骑手)',
+    phone: '13800138005',
+    role: 'rider',
+    roleTitle: '黑石专送骑手',
+    permissions: ['rider_delivery'],
+    status: 'active',
+    shiftStart: '10:00',
+    workHoursToday: 5.5,
+    monthlySales: 0,
+    monthlyCommission: 3150,
+    joinedDate: '2025-02-15'
+  }
+];
+
+export const INITIAL_QUEUE_TICKETS: QueueTicket[] = [
+  {
+    id: 'q-101',
+    queueNo: 'A01',
+    queueType: 'small',
+    guestName: '张先生',
+    phone: '138****0129',
+    partySize: 2,
+    waitTimeMin: 12,
+    status: 'waiting',
+    calledCount: 0,
+    createdAt: '12:08',
+    note: '靠窗小桌优先'
+  },
+  {
+    id: 'q-102',
+    queueNo: 'B03',
+    queueType: 'medium',
+    guestName: '王女士',
+    phone: '139****5510',
+    partySize: 4,
+    waitTimeMin: 18,
+    status: 'waiting',
+    calledCount: 1,
+    createdAt: '12:02',
+    calledAt: '12:15',
+    note: '有儿童需宝宝椅'
+  },
+  {
+    id: 'q-103',
+    queueNo: 'P108',
+    queueType: 'pickup',
+    guestName: '李先生',
+    phone: '150****8831',
+    partySize: 1,
+    waitTimeMin: 5,
+    status: 'waiting',
+    calledCount: 0,
+    createdAt: '12:16',
+    note: '自提：碳烤汉堡+冰美式'
+  },
+  {
+    id: 'q-104',
+    queueNo: 'C01',
+    queueType: 'large',
+    guestName: '赵总',
+    phone: '186****9922',
+    partySize: 8,
+    waitTimeMin: 25,
+    status: 'called',
+    calledCount: 2,
+    createdAt: '11:55',
+    calledAt: '12:18',
+    note: '大包间'
+  }
+];

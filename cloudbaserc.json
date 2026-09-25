@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "version": "2.0",
+  "envId": "tc100-d9gz0e2ko5929e360",
+  "app": {
+    "serviceName": "urban-radar",
+    "framework": "vite",
+    "installCommand": "npm install",
+    "buildCommand": "npm run build",
+    "outputDir": "./dist",
+    "envVariables": {
+      "VITE_AMAP_KEY": "962096d9677b52d1d2d2035ee442a93d",
+      "VITE_AMAP_SECURITY_CODE": "a5159fa4144fb364c34338416f81f470",
+      "VITE_TCB_ENV_ID": "tc100-d9gz0e2ko5929e360"
+    },
+    "ignore": [
+      "node_modules/**",
+      ".git/**",
+      "dist/**"
+    ]
+  }
+}

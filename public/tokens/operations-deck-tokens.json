@@ -1,0 +1,91 @@
+{
+  "$name": "Operations Deck Industrial Design System",
+  "$version": "4.8.0",
+  "$description": "Design tokens specification for OPERATIONS_DECK V4.8 MESH DISPATCH",
+  "color": {
+    "base": {
+      "white": { "$value": "#ffffff", "$type": "color" },
+      "black": { "$value": "#000000", "$type": "color" }
+    },
+    "neutral": {
+      "50": { "$value": "#fbfbf9", "$type": "color", "$description": "Canvas tint and subtle panel bg" },
+      "100": { "$value": "#fafaf8", "$type": "color", "$description": "Secondary card surface" },
+      "200": { "$value": "#f5f5f2", "$type": "color", "$description": "Hover surface & subtle divider" },
+      "300": { "$value": "#f0f0eb", "$type": "color", "$description": "Divider hairline" },
+      "400": { "$value": "#e5e5e0", "$type": "color", "$description": "Primary card and container border" },
+      "500": { "$value": "#d3d1cb", "$type": "color", "$description": "Medium emphasis border" },
+      "600": { "$value": "#a0a09a", "$type": "color", "$description": "Muted caption" },
+      "700": { "$value": "#767670", "$type": "color", "$description": "Secondary label & telemetry metadata" },
+      "800": { "$value": "#333330", "$type": "color", "$description": "High readability body text" },
+      "900": { "$value": "#1a1c1b", "$type": "color", "$description": "Active accent hover" },
+      "950": { "$value": "#111110", "$type": "color", "$description": "Primary headline / foreground" }
+    },
+    "status": {
+      "success": {
+        "solid": { "$value": "#15803d", "$type": "color" },
+        "bg": { "$value": "#f0fdf4", "$type": "color" },
+        "border": { "$value": "rgba(21, 128, 61, 0.3)", "$type": "color" }
+      },
+      "info": {
+        "solid": { "$value": "#2563eb", "$type": "color" },
+        "bg": { "$value": "#eff6ff", "$type": "color" },
+        "border": { "$value": "rgba(37, 99, 235, 0.3)", "$type": "color" }
+      },
+      "warning": {
+        "solid": { "$value": "#d97706", "$type": "color" },
+        "bg": { "$value": "#fffbeb", "$type": "color" },
+        "border": { "$value": "rgba(217, 119, 6, 0.3)", "$type": "color" }
+      },
+      "danger": {
+        "solid": { "$value": "#dc2626", "$type": "color" },
+        "bg": { "$value": "#fef2f2", "$type": "color" },
+        "border": { "$value": "rgba(220, 38, 38, 0.4)", "$type": "color" }
+      }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "heading": { "$value": "Space Grotesk, system-ui, sans-serif", "$type": "fontFamily" },
+      "body": { "$value": "Hanken Grotesk, -apple-system, sans-serif", "$type": "fontFamily" },
+      "mono": { "$value": "Space Grotesk, -apple-system, sans-serif", "$type": "fontFamily" }
+    },
+    "fontSize": {
+      "micro": { "$value": "10px", "$type": "dimension" },
+      "xs": { "$value": "11px", "$type": "dimension" },
+      "sm": { "$value": "12px", "$type": "dimension" },
+      "base": { "$value": "14px", "$type": "dimension" },
+      "md": { "$value": "15px", "$type": "dimension" },
+      "lg": { "$value": "18px", "$type": "dimension" },
+      "xl": { "$value": "20px", "$type": "dimension" },
+      "2xl": { "$value": "24px", "$type": "dimension" },
+      "3xl": { "$value": "30px", "$type": "dimension" }
+    },
+    "fontWeight": {
+      "normal": { "$value": "400", "$type": "fontWeight" },
+      "medium": { "$value": "500", "$type": "fontWeight" },
+      "semibold": { "$value": "600", "$type": "fontWeight" },
+      "bold": { "$value": "700", "$type": "fontWeight" }
+    }
+  },
+  "radii": {
+    "none": { "$value": "0px", "$type": "dimension" },
+    "sharp": { "$value": "1px", "$type": "dimension" },
+    "badge": { "$value": "2px", "$type": "dimension" },
+    "control": { "$value": "3px", "$type": "dimension" },
+    "modal": { "$value": "4px", "$type": "dimension" },
+    "full": { "$value": "9999px", "$type": "dimension" }
+  },
+  "spacing": {
+    "1": { "$value": "4px", "$type": "dimension" },
+    "2": { "$value": "8px", "$type": "dimension" },
+    "3": { "$value": "12px", "$type": "dimension" },
+    "4": { "$value": "16px", "$type": "dimension" },
+    "5": { "$value": "20px", "$type": "dimension" },
+    "6": { "$value": "24px", "$type": "dimension" }
+  },
+  "elevation": {
+    "micro": { "$value": "0 1px 1px rgba(0, 0, 0, 0.02)", "$type": "shadow" },
+    "card": { "$value": "0 1px 2px rgba(0, 0, 0, 0.03)", "$type": "shadow" },
+    "modal": { "$value": "0 20px 25px -5px rgba(0, 0, 0, 0.1)", "$type": "shadow" }
+  }
+}

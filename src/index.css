@@ -1,0 +1,1523 @@
+@import "tailwindcss";
+@import "./design-tokens/operationsDeckTokens.css";
+
+/* ============================================================================
+   ⛔ DEPRECATED TOKEN BLOCK — 旧设计 / 布局令牌（冻结维护 · 禁止在新界面引用）
+   ----------------------------------------------------------------------------
+   「菜品与多渠道沽清界面」（菜品运营控制台 / DISH TOPOLOGY MATRIX）已全面
+   迁移至下方 《INDUSTRIAL PRECISION CONSOLE》 权威令牌集。
+
+   本块仅为尚未迁移的历史组件（APP 端 ~250 个组件）保留兼容，不再新增令牌、
+   不再调整取值。旧界面逐屏迁移完成后，整块可直接删除。
+
+   迁移映射（旧 → 新）：
+     surface / brand-canvas / paper  → page-bg            #F4F4F2
+     surface-card / paper-card       → card-bg            #FFFFFF
+     obsidian / primary / pitch      → dark-container     #001020
+     border / border-control         → border-main        #CCCCCC
+     accent / emeraldAccent          → status-olive       #3C6E3C
+     ember                           → status-terracotta  #AA5A32
+     (新增)                          → slate-blue         #466478
+     (新增)                          → accent-orange      #D98C4D
+   ============================================================================ */
+@theme {
+  --breakpoint-xs: 480px;
+  --color-surface: #F1F1F1;
+  --color-surface-dim: #dadada;
+  --color-surface-low: #f4f4f2;
+  --color-surface-card: #ffffff;
+  --color-obsidian: #111111;
+  --color-primary: #111111;
+  --color-primary-dark: #000000;
+  --color-muted: #888888;
+  --color-muted-light: #888888;
+  --color-border: #E5E5E5;
+  --color-border-subtle: #F1F1F1;
+  --color-border-light: #f0f0ee;
+  --color-charcoal: #111111;
+  --color-muted-text: #888888;
+  --color-subtle-gray: #888888;
+  --color-accent: #1C834F;
+  --color-accent-soft: #ecfdf5;
+  --color-ember: #F97316;
+  --color-ember-soft: #fff7ed;
+  --color-amber: #d97706;
+  --color-amber-soft: #fef3c7;
+  --radius-custom: 6px;
+  --radius-micro: 3px;
+  --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 10px 25px -3px rgba(26, 26, 23, 0.08), 0 4px 10px -2px rgba(26, 26, 23, 0.04);
+
+  /* Radar Theme Tokens (协同联络室规范) */
+  --color-radar-bg: #f9f9f7;
+  --color-radar-surface: #ffffff;
+  --color-radar-dark: #1a1a17;
+  --color-radar-darkHover: #2a2a26;
+  --color-radar-border: #e6e6e2;
+  --color-radar-muted: #71716b;
+  --color-radar-emerald: #059669;
+  --color-radar-emeraldBg: #ecfdf5;
+  --color-radar-alert: #dc2626;
+  --color-radar-alertBg: #fef2f2;
+  --color-radar-amber: #d97706;
+  --color-radar-amberBg: #fffbeb;
+  --shadow-craft: 0 1px 2px rgba(26, 26, 23, 0.05), 0 0 0 1px rgba(26, 26, 23, 0.06);
+  --shadow-craft-alert: 0 2px 4px rgba(220, 38, 38, 0.08), 0 0 0 1px rgba(220, 38, 38, 0.15);
+
+  /* Brand Theme Tokens */
+  --color-brand-charcoal: #141412;
+  --color-brand-dark: #1c1b18;
+  --color-brand-surface: #24231f;
+  --color-brand-card: #1a1916;
+  --color-brand-emerald: #059669;
+  --color-brand-emeraldLight: #10b981;
+  --color-brand-emeraldMuted: #ecfdf5;
+  --color-brand-amber: #d97706;
+  --color-brand-gold: #f59e0b;
+  --color-brand-canvas: #f4f4f2;
+  --color-brand-border: #e6e6e2;
+
+  --color-paper: #FFFFFF;
+  --color-paper-card: #FFFFFF;
+  --color-pitch: #111111;
+  --color-line: #D3D1CB;
+  --color-line-dark: #343836;
+  --color-amberAccent: #F59E0B;
+  --color-emeraldAccent: #059669;
+  --color-techTag: #E8E7E1;
+
+  /* Workstation / Dish Parameter Rules tokens */
+  --color-surface-container: #ffffff;
+  --color-surface-container-low: #f6f3eb;
+  --color-surface-container-high: #ebe8df;
+  --color-surface-container-highest: #e5e2da;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-canvas: #f9f9f7;
+  --color-surface-variant: #e5e2da;
+  --color-surface-muted: #f4f4f2;
+  --color-surface-subtle: #eeeeec;
+  --color-surface-bright: #fcf9f0;
+  --color-cad-viewport-bg: #041224;
+  --color-cad-button-surface: #082846;
+  --color-cad-element-cyan: #00d4ff;
+  --color-status-live: #1C834F;
+  --color-status-live-surface: #e6f4ea;
+  --color-status-live-border: #a8dab5;
+  --color-status-locked: #d9730d;
+  --color-status-locked-surface: #fff8e1;
+  --color-status-locked-border: #fde68a;
+  --color-status-alert: #ba1a1a;
+  --color-status-alert-surface: #ffdad6;
+  --color-border-hairline: #e2e3e1;
+  --color-border-control: #d3d1cb;
+  --color-border-medium: #c8c7be;
+  --color-text-primary: #111111;
+  --color-text-secondary: #555555;
+  --color-text-muted: #888888;
+  --color-on-surface: #111111;
+  --color-on-primary: #ffffff;
+
+  --spacing-space-xs: 4px;
+  --spacing-space-sm: 8px;
+  --spacing-space-md: 12px;
+  --spacing-space-lg: 16px;
+  --spacing-space-xl: 24px;
+  --spacing-gutter-desktop: 24px;
+
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  --shadow-black-card: 0 12px 30px -4px rgba(20, 20, 18, 0.45), 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================================================
+   ✅ INDUSTRIAL PRECISION CONSOLE — 权威设计令牌集 (AUTHORITATIVE)
+   ----------------------------------------------------------------------------
+   来源：stitch_urban_radar_design_system / DESIGN.md / code.html
+   命名与参考稿的 tailwind.config.extend 1:1 对齐，可直接以 Tailwind 工具类调用：
+     bg-page-bg · bg-card-bg · bg-dark-container · border-border-main
+     text-text-prominent · text-text-muted · text-status-olive · bg-slate-blue
+     -bg / -border 变体 · rounded-console / rounded-console-lg / rounded-console-xl
+
+   此令牌集为「菜品与多渠道沽清界面」唯一允许引用的设计底座。
+   仅在新增/调整设计规范时修改，禁止在业务组件内硬编码十六进制色值。
+   ============================================================================ */
+@theme {
+  /* ---- 三端断点（mobile <768 / tablet 768–1279 / desktop ≥1280）---- */
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1280px;
+
+  /* ---- Canvas & Surfaces ---- */
+  --color-page-bg: #F4F4F2;
+  --color-card-bg: #FFFFFF;
+
+  /* ---- Structural Identity（导航脊 / 主头部 / 高优先卡片）---- */
+  --color-dark-container: #111111;
+  --color-dark-container-hover: #000000;
+  --color-dark-container-border: #333333;
+
+  /* ---- Borders & Structural Rules ---- */
+  --color-border-main: #E5E5E5;
+  --color-border-subtle: #E5E5E5;
+
+  /* ---- Text & Hierarchy ---- */
+  --color-text-prominent: #000000;
+  --color-text-secondary: #303030;
+  --color-text-body: #545454;
+  --color-text-muted: #888888;
+  --color-text-light-mono: #9C9C9C;
+
+  /* ---- Functional Semantics ---- */
+  --color-status-olive: #1C834F;
+  --color-status-olive-bg: rgba(28, 131, 79, 0.10);
+  --color-status-olive-border: rgba(28, 131, 79, 0.28);
+
+  --color-status-terracotta: #D98F0B;
+  --color-status-terracotta-bg: rgba(170, 90, 50, 0.08);
+  --color-status-terracotta-border: rgba(170, 90, 50, 0.25);
+
+  --color-slate-blue: #555555;
+  --color-slate-blue-bg: rgba(85, 85, 85, 0.08);
+  --color-slate-blue-border: rgba(85, 85, 85, 0.22);
+
+  --color-accent-orange: #F97316;
+  --color-accent-orange-bg: rgba(249, 115, 22, 0.12);
+
+  /* ---- Micro Radius Scale（工业级微圆角；胶囊几何仅限状态点）---- */
+  --radius-console: 4px;
+  --radius-console-lg: 6px;
+  --radius-console-xl: 8px;
+  --radius-console-pill: 9999px;
+
+  /* ---- Elevation & Depth（结构化边界优先，禁止柔和云影）---- */
+  --shadow-console-1: 0 2px 4px rgba(17, 17, 17, 0.06);
+  --shadow-console-2: 0 8px 16px rgba(17, 17, 17, 0.10);
+  --shadow-console-hud: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+
+  /* ---- Signal Palette（实时信号色：LIVE / ACTIVE / CRITICAL / FOCUS）----
+     取自参考稿 code.html 的运行态信号色，是 DESIGN.md 语义色的高饱和补充。
+     仅用于「实时状态灯 / 严重级别告警 / 焦点动作」三处，不作为基础配色。 */
+  --color-signal-live: #10B981;
+  --color-signal-live-strong: #047857;
+  --color-signal-live-text: #059669;
+  --color-signal-live-surface: #ECFDF5;
+  --color-signal-live-border: #A7F3D0;
+  --color-signal-live-border-strong: #6EE7B7;
+
+  --color-signal-critical: #EF4444;
+  --color-signal-critical-strong: #B91C1C;
+  --color-signal-critical-text: #DC2626;
+  --color-signal-critical-surface: #FEF2F2;
+  --color-signal-critical-border: #FCA5A5;
+  --color-signal-critical-border-soft: #FECACA;
+
+  --color-signal-amber: #F59E0B;
+  --color-signal-amber-strong: #92400E;
+  --color-signal-amber-surface: #FEF08A;
+  --color-signal-amber-bg: #FEF3C7;
+
+  --color-signal-sky: #0EA5E9;
+  --color-signal-sky-strong: #0284C7;
+  --color-signal-sky-surface: #F0F9FF;
+  --color-signal-sky-border: #38BDF8;
+}
+
+/* ============================================================================
+   ✅ M3 ROLE LAYER — Material 3 语义角色令牌（DESIGN.md 前言的完整角色集）
+   ----------------------------------------------------------------------------
+   来源：stitch_urban_radar_design_system 系列导出包的 code.html tailwind-config。
+   Stitch 会把同一份 DESIGN.md 分别渲染成两套类名：
+     · 扁平命名（page-bg / card-bg / dark-container…）→ 上一轮「菜品与多渠道沽清」已采用
+     · M3 语义角色（background / surface-container / on-surface / secondary…）→ 本轮采用
+   两者色值同源，本层负责把 M3 角色名补齐，使两套类名都可用。
+
+   ⚠️ 同名覆盖说明：下方若干角色名与上方旧令牌撞名（旧值是历史遗留调色板），
+   此处按 DESIGN.md 权威取值覆盖，并同步删除 src/index.css 中被同名的
+   非分层普通 CSS 类（否则普通类会击败 Tailwind 分层工具类，造成"令牌改了但颜色没变"）。
+   ============================================================================ */
+@theme {
+  /* ---- Canvas & Surfaces（覆盖旧值 → DESIGN.md 权威取值）---- */
+  --color-background: #faf9f9;
+  --color-on-background: #1a1c1c;
+  --color-surface: #F1F1F1;
+  --color-on-surface: #1a1c1c;
+  --color-surface-dim: #dadada;
+  --color-surface-bright: #faf9f9;
+  --color-surface-variant: #e3e2e2;
+  --color-surface-tint: #737373;
+  --color-on-surface-variant: #44474c;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f4f3f3;
+  --color-surface-container: #eeeeee;
+  --color-surface-container-high: #e8e8e8;
+  --color-surface-container-highest: #e3e2e2;
+
+  /* ---- Structure & Primary ---- */
+  --color-primary: #111111;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1c1b1b;
+  --color-on-primary-container: #858383;
+  --color-inverse-primary: #c8c6c5;
+  --color-primary-fixed: #e5e2e1;
+  --color-primary-fixed-dim: #c8c6c5;
+  --color-on-primary-fixed: #1c1b1b;
+  --color-on-primary-fixed-variant: #474646;
+
+  /* ---- Secondary（工业蓝灰：本设计的"信息/次级强调"角色）---- */
+  --color-secondary: #555555;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #eeeeee;
+  --color-on-secondary-container: #333333;
+  --color-secondary-fixed: #eeeeee;
+  --color-secondary-fixed-dim: #e2e2e2;
+  --color-on-secondary-fixed: #111111;
+  --color-on-secondary-fixed-variant: #555555;
+
+  /* ---- Tertiary（琥珀暖色：等待时长预警等）---- */
+  --color-tertiary: #000000;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #D98F0B;
+  --color-on-tertiary-container: #ffffff;
+  --color-tertiary-fixed: #FEF3C7;
+  --color-tertiary-fixed-dim: #FDE68A;
+  --color-on-tertiary-fixed: #7C2D12;
+  --color-on-tertiary-fixed-variant: #92400E;
+
+  /* ---- Error / Danger ---- */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* ---- Outline & Inverse ---- */
+  --color-outline: #74777d;
+  --color-outline-variant: #c4c6cd;
+  --color-inverse-surface: #2f3131;
+  --color-inverse-on-surface: #f1f0f0;
+
+  /* ---- Spacing（仅补 M3 独有命名，legacy space-lg/xl 保持项目紧凑刻度）---- */
+  --spacing-gutter: 16px;
+  --spacing-gutter-desktop: 24px;
+  --spacing-margin: 16px;
+  --spacing-margin-desktop: 24px;
+}
+
+/* ============================================================================
+   ✅ RAD OPS LAYER — 「高对比运维台」令牌集（前台叫号取餐与等位排队中枢）
+   ----------------------------------------------------------------------------
+   来源：stitch_urban_radar_design_system (4) / code.html 的 tailwind-config。
+
+   ⚠️ 这是同一份 DESIGN.md 的第三种类名映射，务必先读这段再改样式：
+     同一个 Stitch 项目导出过三套等价但命名不同的令牌，业务上必须择一为准：
+       ① 扁平名   page-bg / card-bg / dark-container      → 菜品与多渠道沽清界面（已迁移）
+       ② M3 角色  background / surface-container / …       → 叫号界面 v1（已被本层取代）
+       ③ rad-*    本层                                      → 叫号界面 v2（当前权威）
+     三套色值同源（都可由 DESIGN.md 推导），差异在命名与对比度取向：
+     本层走「浅色画布 + 重色结构块」的高对比编排，信号色用 blue/green/amber/orange/red 五色分工。
+     ⚠️ 项目当前仍存在多套令牌并存的问题，收敛方案待确认（见交付说明）。
+   ============================================================================ */
+@theme {
+  /* ---- Canvas & Surfaces ---- */
+  --color-rad-dark: #111111;
+  --color-rad-dark-card: #1c1c1c;
+  --color-rad-paper: #F1F1F1;
+  --color-rad-surface: #FFFFFF;
+  --color-rad-subtle: #F1F1F1;
+  --color-rad-inset: #F7F9F7;
+  --color-rad-track: #EAECE9;
+
+  /* ---- Lines ---- */
+  --color-rad-line: #E5E5E5;
+  --color-rad-line-light: #F1F1F1;
+
+  /* ---- Text ---- */
+  --color-rad-text-main: #111111;
+  --color-rad-text-muted: #646967;
+  --color-rad-slate: #555555;
+
+  /* ---- Signal Semantics（五色分工，禁止跨用途借用）---- */
+  --color-rad-blue: #555555;
+  --color-rad-blue-subtle: #F1F1F1;
+  --color-rad-green: #10B981;
+  --color-rad-green-subtle: #ECFDF5;
+  --color-rad-amber: #F59E0B;
+  --color-rad-amber-subtle: #FEF3C7;
+  --color-rad-orange: #F97316;
+  --color-rad-orange-subtle: #FFEDD5;
+  --color-rad-red: #EF4444;
+  --color-rad-red-subtle: #FEE2E2;
+
+  /* ---- Precision Radius（3px 基准，工业刻度）---- */
+  --radius-rad: 8px;
+  --radius-rad-sm: 4px;
+  --radius-rad-xl: 12px;
+
+  /* ---- Typography（默认采用标准高品质系统无衬线字体族，保持自然易读）---- */
+  --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ============================================================================
+   ✅ INDUSTRIAL PRECISION CONSOLE v2 — Order Summary Design System (AUTHORITATIVE)
+   ----------------------------------------------------------------------------
+   来源：DESIGN.md（Order Summary Design System）+ code.html（堂食桌台绑定 · 选座开台）
+   本层取代此前并存的四套令牌（DEPRECATED 旧层 / 扁平工业蓝 / M3 角色 / rad-*），
+   并已同步把上述四层的**取值**改为本设计系统的调色板。
+
+   设计原则：
+     · 黑色 #111111 = 主操作与选中强调（不是绿色）
+     · 橙色 #F97316 = 选中/强调（桌台、座席、促销）
+     · 绿色 #1C834F = 仅用于状态（成功/空闲/已完成），禁止用于图标与主操作
+     · 图标默认 #333333，弱化 #888888
+     · 金额与价格一律采用 Space Grotesk 现代几何工控字体（与菜品多渠道售价统一）
+   ============================================================================ */
+@theme {
+  /* ---- 主操作 / 图标 ---- */
+  --color-ink: #111111;
+  --color-ink-hover: #000000;
+  --color-on-ink: #ffffff;
+  --color-icon-default: #333333;
+  --color-icon-muted: #888888;
+
+  /* ---- 状态色（仅状态语义） ---- */
+  --color-success: #1C834F;
+  --color-success-soft: #E8F5EE;
+  --color-warning: #D98F0B;
+  --color-warning-soft: #FEF3C7;
+  --color-danger: #B42318;
+  --color-danger-soft: #FEF2F2;
+
+  /* ---- 选中强调 ---- */
+  --color-select: #F97316;
+  --color-select-soft: #FFF7ED;
+  --color-select-border: #FDBA74;
+
+  /* ---- 画布 / 表面 / 描边 ---- */
+  --color-canvas: #FFFFFF;
+  --color-canvas-gray: #F1F1F1;
+  --color-hairline: #E5E5E5;
+
+  /* ---- 文本 ---- */
+  --color-ink-text: #111111;
+  --color-ink-text-secondary: #555555;
+  --color-ink-text-tertiary: #888888;
+
+  /* ---- 形状与尺寸（DESIGN.md Spacing & Layout） ---- */
+  --radius-ds-sm: 2px;
+  --radius-ds: 4px;
+  --radius-ds-md: 6px;
+  --radius-ds-lg: 8px;
+  --radius-ds-xl: 12px;
+  --radius-ds-2xl: 16px;
+  --radius-ds-pill: 9999px;
+  --spacing-gutter-ds: 16px;
+  --spacing-section-ds: 12px;
+  --spacing-card-ds: 12px;
+  --spacing-row-ds: 8px;
+  --height-action: 44px;
+  --height-tag: 28px;
+
+  /* ---- 字体（金额专享 Space Grotesk 现代几何字体；普通文本统一切回系统默认无衬线标准字体） ---- */
+  --font-text: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-amount: 'Space Grotesk', -apple-system, sans-serif;
+  --font-price: 'Space Grotesk', -apple-system, sans-serif;
+  --font-mono: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ---- DESIGN.md 全局类（§Global CSS Snippet + 全局金额统一类） ---- */
+.amount-text,
+.font-amount,
+.font-price,
+.price-text,
+.price-tag,
+.price-value,
+.currency-amount,
+.font-price-grotesk,
+[data-amount="true"] {
+  font-family: 'Space Grotesk', -apple-system, sans-serif !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 智能金额属性匹配：保障全站带有金额命名特征的节点均自动继承 Space Grotesk 字体 */
+[id*="Amount"],
+[id*="amount"],
+[id*="Price"],
+[id*="price"],
+[id*="Subtotal"],
+[id*="subtotal"],
+[id*="DeliveryFee"],
+[id*="deliveryFee"],
+[id*="Discount"],
+[id*="discount"],
+[id*="Balance"],
+[id*="balance"],
+[id*="Revenue"],
+[id*="revenue"] {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.btn-primary {
+  background-color: #111111;
+  color: #ffffff;
+  border-radius: 8px;
+  min-height: 44px;
+  font-weight: 600;
+}
+.btn-primary:hover { background-color: #000000; }
+.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+.icon-default { color: #333333; }
+.icon-muted { color: #888888; }
+.ds-card { background-color: #ffffff; border: 1px solid #E5E5E5; border-radius: 8px; }
+.ds-tag { min-height: 28px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+.ds-select-ring { border-color: #F97316; }
+.text-success-only { color: #1C834F; }
+/* Typography styles for industrial workstation (切回默认字体，保持清晰易读) */
+.font-headline-lg, .text-headline-lg { font-size: 24px; line-height: 32px; letter-spacing: -0.02em; font-weight: 700; }
+.font-headline-md, .text-headline-md { font-size: 17px; line-height: 24px; letter-spacing: -0.01em; font-weight: 600; }
+.font-headline-sm, .text-headline-sm { font-size: 15px; line-height: 22px; font-weight: 600; }
+.font-body-lg, .text-body-lg { font-size: 15px; line-height: 22px; font-weight: 500; }
+.font-body-md, .text-body-md { font-size: 13.5px; line-height: 20px; font-weight: 500; }
+.font-body-sm, .text-body-sm { font-size: 12.5px; line-height: 18px; font-weight: 500; }
+.font-label-lg, .text-label-lg { font-size: 14px; line-height: 20px; letter-spacing: 0.01em; font-weight: 600; }
+.font-label-md, .text-label-md { font-size: 13px; line-height: 18px; letter-spacing: 0.01em; font-weight: 500; }
+.font-label-sm, .text-label-sm { font-size: 12px; line-height: 16px; letter-spacing: 0.01em; font-weight: 600; }
+.font-label-micro, .text-label-micro { font-size: 11px; line-height: 15px; letter-spacing: 0.01em; font-weight: 600; }
+/* Mobile headline scale (三端适配：桌面 24px / 移动 18px) */
+.font-headline-lg-mobile, .text-headline-lg-mobile { font-size: 18px; line-height: 24px; letter-spacing: -0.01em; font-weight: 700; }
+/* Telemetry numerics */
+.font-code-num, .text-code-num { font-size: 14px; line-height: 20px; letter-spacing: -0.01em; font-weight: 600; }
+.font-code-sm, .text-code-sm { font-size: 12.5px; line-height: 17px; letter-spacing: -0.01em; font-weight: 500; }
+
+/* ============================================================================
+   M3 角色排版层（切回系统默认无衬线标准字阶，金额保持单独设定）
+   ============================================================================ */
+.m3-display-lg { font-size: 36px; line-height: 44px; letter-spacing: -0.03em; font-weight: 700; }
+.m3-display-sm { font-size: 28px; line-height: 36px; letter-spacing: -0.02em; font-weight: 600; }
+.m3-headline-lg { font-size: 24px; line-height: 32px; letter-spacing: -0.02em; font-weight: 600; }
+.m3-headline-sm { font-size: 20px; line-height: 28px; letter-spacing: -0.01em; font-weight: 600; }
+.m3-title-md { font-size: 16px; line-height: 24px; letter-spacing: 0; font-weight: 600; }
+.m3-body-lg { font-size: 16px; line-height: 24px; letter-spacing: 0; font-weight: 400; }
+.m3-body-md { font-size: 14px; line-height: 20px; letter-spacing: 0; font-weight: 400; }
+.m3-body-sm { font-size: 12px; line-height: 16px; letter-spacing: 0.01em; font-weight: 400; }
+.m3-label-lg { font-size: 14px; line-height: 20px; letter-spacing: 0.02em; font-weight: 600; }
+.m3-label-md { font-size: 12px; line-height: 16px; letter-spacing: 0.04em; font-weight: 600; }
+.m3-code-num-lg { font-size: 20px; line-height: 24px; letter-spacing: -0.02em; font-weight: 600; }
+.m3-code-num { font-size: 14px; line-height: 20px; letter-spacing: -0.01em; font-weight: 600; }
+.m3-code-sm { font-size: 12px; line-height: 16px; letter-spacing: 0.01em; font-weight: 500; }
+
+/* ============================================================================
+   菜品与多渠道沽清界面 · 控制台专用工具层
+   仅服务于 Industrial Precision Console 令牌集，与旧界面样式严格隔离。
+   ============================================================================ */
+.pt-space-xs { padding-top: 4px; }
+.pt-space-sm { padding-top: 8px; }
+.pt-space-md { padding-top: 12px; }
+.pb-space-xs { padding-bottom: 4px; }
+.pb-space-sm { padding-bottom: 8px; }
+.pb-space-md { padding-bottom: 12px; }
+.mt-space-xs { margin-top: 4px; }
+.mt-space-sm { margin-top: 8px; }
+.mt-space-md { margin-top: 12px; }
+.ml-space-sm { margin-left: 8px; }
+.ml-space-md { margin-left: 12px; }
+.mx-space-lg { margin-left: 16px; margin-right: 16px; }
+.space-y-space-md > * + * { margin-top: 12px; }
+.space-y-space-lg > * + * { margin-top: 16px; }
+
+/* 控制台滚动条：彻底隐藏，保持工业仪表的洁净读数面 */
+.console-scroll-none { -ms-overflow-style: none; scrollbar-width: none; }
+.console-scroll-none::-webkit-scrollbar { display: none; }
+
+/* 视图切换动画：150ms 工业级快切，避免运维疲劳 */
+@keyframes consoleViewFadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.console-view-fade-in { animation: consoleViewFadeIn 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* 硬阴影（战术 HUD 浮层专用） */
+.shadow-console-hud { box-shadow: var(--shadow-console-hud); }
+
+/* Craft Industrial HUD Spacing Utilities */
+.p-space-xs { padding: 4px; }
+.p-space-sm { padding: 8px; }
+.p-space-md { padding: 12px; }
+.p-space-lg { padding: 16px; }
+.p-space-xl { padding: 24px; }
+.px-space-xs { padding-left: 4px; padding-right: 4px; }
+.px-space-sm { padding-left: 8px; padding-right: 8px; }
+.px-space-md { padding-left: 12px; padding-right: 12px; }
+.px-space-lg { padding-left: 16px; padding-right: 16px; }
+.px-space-xl { padding-left: 24px; padding-right: 24px; }
+.py-space-xs { padding-top: 4px; padding-bottom: 4px; }
+.py-space-sm { padding-top: 8px; padding-bottom: 8px; }
+.py-space-md { padding-top: 12px; padding-bottom: 12px; }
+.py-space-lg { padding-top: 16px; padding-bottom: 16px; }
+.py-space-xl { padding-top: 24px; padding-bottom: 24px; }
+.mb-space-xs { margin-bottom: 4px; }
+.mb-space-sm { margin-bottom: 8px; }
+.mb-space-md { margin-bottom: 12px; }
+.mb-space-lg { margin-bottom: 16px; }
+.mb-space-xl { margin-bottom: 24px; }
+.gap-space-xs { gap: 4px; }
+.gap-space-sm { gap: 8px; }
+.gap-space-md { gap: 12px; }
+.gap-space-lg { gap: 16px; }
+.gap-space-xl { gap: 24px; }
+.px-gutter-desktop { padding-left: 24px; padding-right: 24px; }
+
+/* ============================================================================
+   ⛔ 已删除：Craft Industrial HUD 手写色彩工具类
+   ----------------------------------------------------------------------------
+   原 `.bg-surface-container*` / `.bg-surface-canvas` / `.bg-surface-variant` /
+   `.bg-surface-bright` / `.text-on-surface` / `.text-on-primary` /
+   `.text-text-*` / `.border-border-*` / `.bg-status-*-surface` / `.text-cad-*`
+   等约 30 条手写类已全部删除，改由上方 @theme 令牌自动生成同名 Tailwind 工具类。
+
+   删除原因（重要）：这些类是非分层（unlayered）CSS，**优先级高于 Tailwind 的
+   @layer utilities**。只要它们存在，@theme 里同名令牌的取值改动就永远不生效
+   —— 会出现「令牌已经改了、颜色却没变」的静默 bug。删除后：
+     · `bg-surface-container`      → 由 #ffffff 纠正为 DESIGN.md 的 #eeeeee
+     · `bg-surface-variant`        → 由 #e5e2da 纠正为 #e3e2e2
+     · `bg-surface-bright`         → 由 #fcf9f0 纠正为 #faf9f9
+     · `text-on-surface`           → 由 #1c1c17 纠正为 #1a1c1c
+     · `text-secondary-fixed`      → 由遗留的绿色 #80da96 纠正为 M3 的 #c7e7fe
+   影响面：仅 3 个组件（FlavorTagSelector / IngredientPackageCameraModal /
+   IngredientTraceSopSection）出现轻微色阶变化，均属向 DESIGN.md 收敛。
+   ============================================================================ */
+
+.badge-dot {
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.92); }
+}
+.animate-radar-pulse {
+  animation: subtle-pulse 2.2s ease-in-out infinite;
+}
+
+/* Card Textures & 3D Interactive Styles */
+.obsidian-mesh {
+  background-color: #141412;
+  background-image: radial-gradient(circle at 10% 15%, rgba(52, 53, 50, 0.7) 0%, rgba(20, 20, 18, 0.98) 60%),
+                    linear-gradient(135deg, #252522 0%, #151513 100%);
+}
+.chip-gold {
+  background: linear-gradient(135deg, #fce08b 0%, #dfad44 50%, #b8860b 100%);
+}
+.gold-badge {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+.card-perspective-container {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+.card-flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-flipper.is-flipped {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  background-color: #141412;
+  border-radius: 0.75rem;
+}
+.card-front {
+  transform: rotateY(0deg) translateZ(1px);
+  -webkit-transform: rotateY(0deg) translateZ(1px);
+  z-index: 2;
+  pointer-events: auto;
+}
+.card-back {
+  transform: rotateY(180deg) translateZ(1px);
+  -webkit-transform: rotateY(180deg) translateZ(1px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 翻转状态切换：在翻转到背面时，正面自动隐藏并禁用事件，背面提升层级并激活事件，彻底解决透视穿透与遮罩重叠 */
+.card-flipper.is-flipped .card-front {
+  z-index: 1;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0s 0.25s;
+}
+.card-flipper.is-flipped .card-back {
+  z-index: 2;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease 0.15s, visibility 0s 0.15s;
+}
+.card-flipper:not(.is-flipped) .card-front {
+  z-index: 2;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease 0.15s, visibility 0s 0.15s;
+}
+.card-flipper:not(.is-flipped) .card-back {
+  z-index: 1;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0s 0.25s;
+}
+.glare-overlay {
+  pointer-events: none;
+  background: radial-gradient(circle 180px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.card-perspective-container:hover .glare-overlay,
+.card-perspective-container.is-active .glare-overlay {
+  opacity: 1;
+}
+
+/* Dish Penetration Anchor Spotlight Animation */
+@keyframes dishAnchorSpotlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.85);
+    outline: 2px solid #f59e0b;
+    background-color: rgba(254, 243, 199, 0.5);
+    transform: scale(1.02);
+  }
+  30% {
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+    outline: 2px solid #000;
+    background-color: rgba(254, 243, 199, 0.3);
+    transform: scale(1.01);
+  }
+  70% {
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+    outline: 2px solid #f59e0b;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    outline: 2px solid transparent;
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+.dish-anchor-highlight {
+  animation: dishAnchorSpotlight 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  z-index: 30 !important;
+  position: relative;
+}
+
+/* User-specified Real-time Orders UI Tokens and Animations */
+.hairline-card {
+  border: 1px solid #e5e7eb;
+}
+
+.rounded-custom {
+  border-radius: 4px;
+}
+
+.rounded-custom-lg {
+  border-radius: 6px;
+}
+
+/* 3-Frame Vertical Carousel for Banner in Card 2 with seamless loop and hardware acceleration */
+@keyframes ticker3Frames {
+  0%, 25% {
+    transform: translate3d(0, 0%, 0);
+  }
+  30%, 55% {
+    transform: translate3d(0, -25%, 0);
+  }
+  60%, 85% {
+    transform: translate3d(0, -50%, 0);
+  }
+  90%, 100% {
+    transform: translate3d(0, -75%, 0);
+  }
+}
+
+.animate-banner-ticker {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: ticker3Frames 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* 2-Frame Vertical Carousel for Title & Status in Card 3 with seamless loop and hardware acceleration */
+@keyframes ticker2Frames {
+  0%, 42% {
+    transform: translate3d(0, 0%, 0);
+  }
+  48%, 90% {
+    transform: translate3d(0, -33.333%, 0);
+  }
+  96%, 100% {
+    transform: translate3d(0, -66.666%, 0);
+  }
+}
+
+.animate-vertical-ticker {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation: ticker2Frames 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.ticker-wrapper {
+  position: relative;
+  overflow: hidden;
+  contain: paint;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+}
+
+/* Architectural Draft & Grid Accent */
+.blueprint-grid {
+  background-size: 8px 8px;
+  background-image: 
+    linear-gradient(to right, rgba(26, 28, 27, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 28, 27, 0.04) 1px, transparent 1px);
+}
+
+.active-blueprint-grid {
+  background-size: 10px 10px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+}
+
+.shadow-draft-active {
+  box-shadow: 3px 3px 0px 0px #1A1C1B;
+}
+
+.shadow-spec-inset {
+  box-shadow: inset 0 0 0 1px #D3D1CB;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+:root {
+  --notion-bg: #f7f7f5;
+  --notion-surface: #ffffff;
+  --notion-border: #e6e6e4;
+  --notion-border-strong: #d3d1cb;
+  --notion-text: #37352f;
+  --notion-text-muted: #787774;
+  --notion-text-sub: #5a5854;
+  --notion-hover: #efefed;
+  --notion-active: #e8e8e6;
+  
+  --notion-green: #2b593f;
+  --notion-green-bg: #edf3ec;
+  --notion-green-border: #c4dcbc;
+  --notion-green-dot: #4dab63;
+  
+  --notion-amber: #8f6412;
+  --notion-amber-bg: #fbf3db;
+  --notion-amber-border: #ecd9a8;
+  --notion-amber-strong: #d9730d;
+  
+  --notion-red: #eb5757;
+  --notion-red-bg: #fbe4e4;
+  --notion-red-border: #f0c3c3;
+  
+  --notion-blue: #2383e2;
+  --notion-blue-bg: #edf3f8;
+  --notion-blue-border: #c4d6ec;
+  --notion-blue-text: #1c5598;
+  
+  --notion-purple: #6941c6;
+  --notion-purple-bg: #f4edf8;
+  --notion-purple-border: #d8b4fe;
+  
+  --notion-ink: #37352f;
+  --notion-ink-2: #201f1d;
+}
+
+@layer base {
+  :root {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    overscroll-behavior-y: none;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  }
+  body {
+    background-color: #f9f9f7;
+    color: #1a1c1b;
+    min-height: 100vh;
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+  }
+  input, button, select, textarea {
+    font-family: inherit;
+  }
+
+  /* 彻底禁止移动端输入聚焦时自动放大视口与互动器画布比例 */
+  @media screen and (max-width: 768px) {
+    input:not([type="checkbox"]):not([type="radio"]),
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+
+  /* 消除输入交互与编辑器触摸双击缩放、手势形变 */
+  input, textarea, select {
+    touch-action: manipulation;
+  }
+}
+
+.font-hanken {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.shadow-urban {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-urban-modal {
+  box-shadow: 0px 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.notion-card {
+  background-color: #ffffff;
+  border: 1px solid #e6e6e4;
+  border-radius: 3px;
+}
+
+.notion-btn-primary {
+  background-color: #37352f;
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.notion-btn-primary:hover {
+  background-color: #201f1d;
+}
+
+.notion-btn-secondary {
+  background-color: #ffffff;
+  color: #37352f;
+  border: 1px solid #d3d1cb;
+  border-radius: 3px;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.notion-btn-secondary:hover {
+  background-color: #efefed;
+}
+
+/* Global Scrollbar Hiding & Optimization - 完全隐藏滚动条并保持平滑滚动 */
+* {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.hide-scrollbar,
+.no-scrollbar,
+.notion-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar,
+.notion-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+@keyframes dishBannerFadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(3px) scale(0.97);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-2px) scale(0.97);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes skeletonPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animate-skeleton {
+  animation: skeletonPulse 1.8s ease-in-out infinite;
+}
+
+/* Bottom Navigation Bar Precision Padding & Folder Tab Stack Dock */
+#bottom-main-dock-nav,
+nav[id^="bottom-main"] {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+/* Ancestor Container Top Shadow & Optical Reflection */
+#bottom-navbar-outer-wrapper {
+  position: relative;
+  box-shadow: 0 -14px 32px -4px rgba(0, 0, 0, 0.16), 0 -4px 12px -2px rgba(0, 0, 0, 0.08);
+}
+
+#bottom-navbar-outer-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.09) 0%, rgba(255, 255, 255, 0.04) 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+#bottom-navbar-outer-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.95) 20%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.95) 80%, transparent 100%);
+  box-shadow: 0 -1px 4px rgba(255, 255, 255, 0.9), 0 1px 3px rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+  z-index: 30;
+}
+
+@keyframes glassReflect {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  35%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.glass-reflection {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-reflection::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
+  animation: glassReflect 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+.subtle-rounded {
+  border-radius: 6px !important;
+}
+
+.subtle-rounded-inner {
+  border-radius: 4px !important;
+}
+
+.rotate-icon {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-content {
+  transition: max-height 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.shake-animate {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* =========================================================================
+ * Dynamic Radar Engine Keyframes & Utilities (流动餐车高精雷达动态引擎)
+ * ========================================================================= */
+@keyframes radarSweepSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radarSonarExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.18);
+    opacity: 0.95;
+  }
+  45% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes radarCorePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.75;
+  }
+}
+
+.radar-sweep-beam {
+  animation: radarSweepSpin 3.2s linear infinite;
+  transform-origin: center center;
+}
+
+.radar-sonar-wave-1 {
+  animation: radarSonarExpand 2.8s cubic-bezier(0.1, 0.7, 0.3, 1) infinite;
+}
+
+.radar-sonar-wave-2 {
+  animation: radarSonarExpand 2.8s cubic-bezier(0.1, 0.7, 0.3, 1) infinite 0.95s;
+}
+
+.radar-sonar-wave-3 {
+  animation: radarSonarExpand 2.8s cubic-bezier(0.1, 0.7, 0.3, 1) infinite 1.9s;
+}
+
+.radar-core-ping {
+  animation: radarCorePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.7; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes wave-track {
+  from { stroke-dashoffset: 40; }
+  to { stroke-dashoffset: 0; }
+}
+.track-dash {
+  stroke-dasharray: 6 4;
+  animation: wave-track 1.2s linear infinite;
+}
+
+/* 极简平铺黑白地图渲染引擎 (Minimalist Flat Monochrome Map Rendering) */
+/* 滤除 2D/3D 建筑高低模型与立体杂乱阴影、彻底去除黄色/绿色/杂色道路，转化为纯净石墨黑白极简平铺 */
+.minimal-flat-map-tile,
+.amap-clean-white-tile {
+  filter: grayscale(100%) contrast(0.92) brightness(1.03) !important;
+  opacity: 0.92 !important;
+}
+
+.leaflet-container {
+  background-color: #f9f9f7 !important;
+  font-family: inherit;
+}
+
+.amap-clean-white-container {
+  background-color: #f9f9f7 !important;
+}
+
+/* 微弧街道与路线专属流向虚线流动动画 (契合黑曜石主题) */
+@keyframes microArcFlow {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.leaflet-microarc-flow,
+.leaflet-greenwave-flow {
+  animation: microArcFlow 1.6s linear infinite !important;
+}
+
+/* 雷达涟漪扩散动画 */
+@keyframes mapRadarPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.map-radar-pulse-ring {
+  animation: mapRadarPulse 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+/* 驾驶舱小组件呼吸与微浮动动画 */
+@keyframes cockpitBreathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.96;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+@keyframes cockpitRadarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-cockpit-breathe {
+  animation: cockpitBreathe 3s ease-in-out infinite;
+}
+
+.animate-cockpit-spin {
+  animation: cockpitRadarSpin 12s linear infinite;
+}
+
+/* 4-Level 级联矩阵透视钢笔链接线条流光动画 */
+@keyframes penLinkDash {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-pen-link-dash {
+  animation: penLinkDash 1.6s linear infinite;
+}
+
+/* ============================================================================
+   商家工作台视力增强与小字体提升 (Merchant Workspace Legibility Boost)
+   统一应用 'Space Grotesk' 字体，并针对 main 工作区内过小字号进行适当增大
+   ============================================================================ */
+.merchant-workspace-readable {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 14px;
+}
+
+.merchant-workspace-readable * {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.merchant-workspace-readable .text-\[8px\],
+.merchant-workspace-readable .text-\[9px\] {
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+}
+
+.merchant-workspace-readable .text-\[10px\],
+.merchant-workspace-readable .font-label-micro,
+.merchant-workspace-readable .text-label-micro {
+  font-size: 11.5px !important;
+  line-height: 1.4 !important;
+}
+
+.merchant-workspace-readable .text-\[11px\],
+.merchant-workspace-readable .font-label-sm,
+.merchant-workspace-readable .text-label-sm {
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+}
+
+.merchant-workspace-readable .text-xs,
+.merchant-workspace-readable .font-body-sm,
+.merchant-workspace-readable .text-body-sm {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+}
+
+
+
+
+/* ---- 客食端预览列展开时：审计把手（fixed 贴视口右缘）右移让位 470px ---- */
+html[data-preview-open='1'] .js-audit-handle {
+  right: 470px;
+}
+
+/* ---- 客食端预览轻量模式（embed）：冻结 CSS 装饰动画，降低与宿主的主线程争抢 ---- */
+html[data-embed-lite='1'] *,
+html[data-embed-lite='1'] *::before,
+html[data-embed-lite='1'] *::after {
+  animation-play-state: paused !important;
+}
+
+/* Industrial Precision Console - Pulse Animation Token */
+@keyframes console-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+.pulse-indicator {
+  animation: console-pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ============================================================================
+   ✅ INDUSTRIAL PRECISION CONSOLE — 商家端总控 全渠道供售与营业打样主控矩阵
+   ============================================================================ */
+@theme {
+  --color-console-bg: #F4F4F2;
+  --color-console-card: #FFFFFF;
+  --color-console-dark: #001020;
+  --color-console-border: #E2E2DF;
+  --color-console-borderDark: #CCCCCC;
+  --color-console-muted: #71767B;
+  --color-console-text: #111827;
+  --color-console-primary: #006494;
+  --color-console-primaryLight: #E8F3FA;
+  --color-console-accent: #3BB4FE;
+  --color-console-warning: #C26D00;
+  --color-console-warningLight: #FFF4E5;
+  --color-console-halted: #8A9096;
+  --color-console-haltedBg: #EFEFEF;
+  --color-console-danger: #D32F2F;
+  --color-console-dangerLight: #FDE8E8;
+}
+
+.rounded-c { border-radius: 3px; }
+
+@keyframes pulseGlowCyan {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 180, 254, 0.55); }
+  50% { box-shadow: 0 0 0 5px rgba(59, 180, 254, 0); }
+}
+@keyframes pulseGlowBlue {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 100, 148, 0.45); }
+  50% { box-shadow: 0 0 0 4px rgba(0, 100, 148, 0); }
+}
+@keyframes pulseGlowWarning {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(194, 109, 0, 0.5); }
+  50% { box-shadow: 0 0 0 4px rgba(194, 109, 0, 0); }
+}
+
+.indicator-active {
+  animation: pulseGlowCyan 2.2s infinite ease-in-out;
+}
+.indicator-warning {
+  animation: pulseGlowWarning 2.2s infinite ease-in-out;
+}
+.indicator-inactive {
+  box-shadow: none !important;
+}
+
+.channel-card-active {
+  background-color: #FFFFFF;
+  border-color: rgba(0, 100, 148, 0.35);
+  box-shadow: 0 1px 4px rgba(0, 100, 148, 0.08), inset 0 0 0 1px rgba(0, 100, 148, 0.12);
+}
+.channel-card-halted {
+  background-color: #F8F8F6;
+  border-color: #E2E2DF;
+  box-shadow: none;
+  opacity: 0.72;
+}
+
+.switch-knob {
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+}
+.switch-knob.is-active {
+  transform: translateX(10px);
+  background-color: #006494;
+}
+.switch-knob.is-inactive {
+  transform: translateX(0);
+  background-color: #8A9096;
+}
+
+.console-toast {
+  pointer-events: auto;
+  transform: translateY(-20px) scale(0.95);
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.console-toast.toast-show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.console-toast.toast-hide {
+  transform: translateY(-15px) scale(0.92);
+  opacity: 0;
+}
+
+/* ============================================================================
+   极致 120FPS 硬件加速滚动微舒展动效（高刷新率、零闪烁、微动轻量化）
+   ============================================================================ */
+.organic-card-reveal {
+  transform-origin: left center !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.organic-card-reveal[data-reveal="hidden-down"] {
+  opacity: 0.35 !important;
+  transform: translate3d(-6px, 8px, 0) scale(0.985) !important;
+  transition: none !important;
+}
+
+.organic-card-reveal[data-reveal="hidden-up"] {
+  opacity: 0.35 !important;
+  transform: translate3d(-6px, -8px, 0) scale(0.985) !important;
+  transition: none !important;
+}
+
+.organic-card-reveal[data-reveal="visible"] {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease-out !important;
+}
+
+@keyframes sound-wave {
+  0% {
+    transform: scaleY(0.35);
+  }
+  100% {
+    transform: scaleY(1.3);
+  }
+}
+
+/* ============================================================================
+   全局排版规范：普通文本切回系统默认无衬线字体，金额单独保留 Space Grotesk
+   ============================================================================ */
+.font-mono,
+[class*="font-mono"] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
+
+/* ============================================================================
+   热敏小票机物理打印与隔空打印样式重置 (去除遮罩、仅打印小票白底、适配 58mm/80mm)
+   ============================================================================ */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+  }
+
+  body > *:not(.thermal-print-portal) {
+    display: none !important;
+  }
+
+  #thermal-self-test-paper {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 58mm !important;
+    margin: 0 !important;
+    padding: 2mm !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    visibility: visible !important;
+  }
+
+  @page {
+    size: 58mm auto;
+    margin: 0;
+  }
+}
+
+
+
+
+
